@@ -12,10 +12,20 @@ module.exports = (grunt) ->
         src: './public/**/*.coffee',
         ext: '.js'
       }
+    },
+    scss: {
+      dist: {
+        files: [{
+          expand: true,
+          src: ['./public/**/*.scss'],
+          ext: '.css'
+        }]
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-scss');
 
-  grunt.registerTask('default', ['coffee'])
+  grunt.registerTask('default', ['coffee', 'scss'])

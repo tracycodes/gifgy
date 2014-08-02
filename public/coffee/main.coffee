@@ -2,7 +2,7 @@ require.config({
   paths: {
     "jquery": "../components/jquery/dist/jquery",
     "underscore": "../components/underscore/underscore",
-    "backbone": "../components/backbone/backbone"
+    "backbone": "../components/backbone/backbone",
   },
   shim: {
     'backbone': {
@@ -15,7 +15,7 @@ require.config({
   }
 })
 
-require(["jquery", "underscore"], ($, _) ->
+require(["jquery", "underscore", "uploader"], ($, _, Uploader) ->
   toggle = false
 
   setInterval () => 
@@ -25,4 +25,6 @@ require(["jquery", "underscore"], ($, _) ->
       $('#flasher').text('GIFGY')
     toggle = !toggle
   , 200
+
+  uploader = new Uploader()
 )
