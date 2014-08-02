@@ -4,5 +4,6 @@ npm-debug.log
 constants.coffee
 *.css
 *.js
+.DS_Store
 *.swp
 gifs
