@@ -1,4 +1,5 @@
 guid = require('guid')
+config = require('../lib/configuration')
 
 redis = require('redis').createClient()
 
@@ -12,7 +13,7 @@ module.exports = ( app ) ->
       if gif_url
         res.redirect( 301, gif_url )
       else
-        res.status( 404 ).end()
+        res.status( 303, config('DEFAULT_GIF_URL') )
   ################
 
   app.get '/', ( req, res ) ->
@@ -24,9 +25,10 @@ module.exports = ( app ) ->
         if gif_id
           redirectToGif( gif_id, res )
         else
-          res.redirect( 301, 'http://default.gif' )
+          res.redirect( 301, c('DEFAULT_GIF_URL') )
     else
-      res.render( 'public' )
+      res.render 'public', ( err, html ) ->
+        res.send( html )
 
   app.get '/g/:id', ( req, res ) ->
     redirectToGif( req.params.id, res )

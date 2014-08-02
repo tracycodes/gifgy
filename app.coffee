@@ -1,9 +1,9 @@
 express = require('express')
 app = express()
 app.use require('body-parser').urlencoded( extended: true )
-app.use(express.static('public'));
+app.use express.static('public')
 
-app.set('views', __dirname+'views' )
+app.set( 'views', __dirname+'/views' )
 app.set('view engine', 'jade')
 
 #####################
