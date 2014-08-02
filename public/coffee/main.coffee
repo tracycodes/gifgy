@@ -15,7 +15,7 @@ require.config({
   }
 })
 
-require(["jquery", "underscore", "uploader"], ($, _, Uploader) ->
+require(["jquery", "underscore", "backbone"], ($, _, Backbone) ->
   toggle = false
 
   setInterval () => 
@@ -26,5 +26,17 @@ require(["jquery", "underscore", "uploader"], ($, _, Uploader) ->
     toggle = !toggle
   , 200
 
-  uploader = new Uploader()
+  Uploader = Backbone.View.extend({
+    el: $('#uploader'),
+    events: {
+      'click button': 'click_uploader'
+    }
+
+    initialize: ->
+
+    click_uploader: ->
+      
+  })
+
+  test = new Uploader()
 )
