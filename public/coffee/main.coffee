@@ -26,6 +26,16 @@ require(["jquery", "underscore", "backbone"], ($, _, Backbone) ->
     toggle = !toggle
   , 200
 
+  Router = Backbone.Router.extend({
+    'uploader': 'uploader',
+
+    initialize: (vent) ->
+      this.vent = vent
+
+    uploader: ->
+      this.vent.emit('upload-route')
+  })
+
   Uploader = Backbone.View.extend({
     el: $('#uploader'),
     events: {
@@ -33,20 +43,28 @@ require(["jquery", "underscore", "backbone"], ($, _, Backbone) ->
       'change input': 'upload'
     }
 
-    initialize: ->
+    initialize: (vent)->
+      vent.on('upload-route', _.bind(this.upload_route, this))
 
     upload: (e)->
       reader = new FileReader()
       reader.onload = () -> 
         $('img').attr('src', reader.result);
+
+        # Get a temporary upload key for s3
+        # Store to s3
+        # Display upload indicator
+
       reader.readAsDataURL(e.target.files[0])
 
-      # Pop the file uploader
-      # Retrieve a temporary s3 key
-      # Retrieve the image from the element
-      # put it at the s3 address
-      # Store that address back in our redis db
-  })
+    upload_route: () ->
 
-  test = new Uploader()
+  })
+  
+  vent = _.extend({}, Backbone.Events);
+  router = new Router(vent)
+  test = new Uploader(vent)
+
+  Backbone.history.start({pushState: true})
+
 )
