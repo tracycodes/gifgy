@@ -1,5 +1,7 @@
 node_modules
 public/components
 npm-debug.log
+constants.coffee
 *.css
 *.js
+*.swp
