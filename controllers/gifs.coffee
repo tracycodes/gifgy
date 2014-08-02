@@ -10,18 +10,23 @@ module.exports = ( app ) ->
   redirectToGif = ( gif_id, res ) ->
     redis.hget 'gifs', gif_id, ( err, gif_url ) ->
       if gif_url
-        res.redirect( 302, gif_url )
+        res.redirect( 301, gif_url )
       else
         res.status( 404 ).end()
   ################
 
   app.get '/', ( req, res ) ->
 
-    keyword = req.headers.host.split(/\./)[0]
-    console.log( 'Keyword: ' + keyword )
-    redis.zrevrange keyword, -0, -0, ( err, gif_id ) ->
-      if gif_id
-        redirectToGif( gif_id, res )
+    parts = req.headers.host.split(/\./)
+    if parts.length == 3
+      keyword = parts[0]
+      redis.zrevrange keyword, -0, -0, ( err, gif_id ) ->
+        if gif_id
+          redirectToGif( gif_id, res )
+        else
+          res.redirect( 301, 'http://default.gif' )
+    else
+      res.render( 'public' )
 
   app.get '/g/:id', ( req, res ) ->
     redirectToGif( req.params.id, res )

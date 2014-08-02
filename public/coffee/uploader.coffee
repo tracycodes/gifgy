@@ -1,12 +1,21 @@
-require ["backbone" ,"jquery", "underscore"], (Backbone, $, _) ->
-  return BackBone.View.Extend({
+require ["jquery", "underscore", "backbone"], ($, _, Backbone) ->
+  return Backbone.View.extend({
+    el: $('#uploader'),
     events: {
-      'click #uploader': 'click_uploader'
+      'click input': 'click_uploader',
+      'change input': 'upload'
     }
 
     initialize: ->
 
-    click_uploader: ->
-      alert('yeah')
-  })
+    upload: (e)->
+      reader = new FileReader()
+      reader.onload = () -> 
+        $('img').attr('src', reader.result);
 
+        # Get a temporary upload key for s3
+        # Store to s3
+        # Display upload indicator
+
+      reader.readAsDataURL(e.target.files[0])
+  })

@@ -1,13 +1,6 @@
 module.exports = (grunt) ->
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    # watch: {
-    #   files: ['./public/**/*.coffee'],
-    #   tasks: ['coffee', 'scss'],
-    #   options: {
-    #     livereload: true,
-    #   }
-    # },
     watch: {
       options: {
         livereload: true
