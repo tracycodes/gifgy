@@ -4,15 +4,20 @@
   "description": "Gifolution",
   "main": "app.js",
   "dependencies": {
+    "body-parser": "^1.5.2",
+    "coffee-script": "^1.7.1",
     "express": "^4.7.2",
+    "guid": "^0.0.12",
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-coffee": "^0.10.1",
     "grunt-contrib-watch": "^0.6.1",
-    "lodash": "^2.4.1"
+    "lodash": "^2.4.1",
+    "redis": "^0.11.0"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "./node_modules/coffee-script/bin/coffee app.coffee",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
