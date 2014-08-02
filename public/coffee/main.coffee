@@ -29,13 +29,23 @@ require(["jquery", "underscore", "backbone"], ($, _, Backbone) ->
   Uploader = Backbone.View.extend({
     el: $('#uploader'),
     events: {
-      'click button': 'click_uploader'
+      'click input': 'click_uploader',
+      'change input': 'upload'
     }
 
     initialize: ->
 
-    click_uploader: ->
-      
+    upload: (e)->
+      reader = new FileReader()
+      reader.onload = () -> 
+        $('img').attr('src', reader.result);
+      reader.readAsDataURL(e.target.files[0])
+
+      # Pop the file uploader
+      # Retrieve a temporary s3 key
+      # Retrieve the image from the element
+      # put it at the s3 address
+      # Store that address back in our redis db
   })
 
   test = new Uploader()
