@@ -2,8 +2,8 @@ module.exports = (grunt) ->
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     watch: {
-      files: ['./public/**/*.coffee'],
-      tasks: ['coffee'],
+      files: ['./public/**/*.coffee', './public/**/*.scss'],
+      tasks: ['coffee', 'scss'],
     },
     coffee: {
       glob_to_multiple: {
