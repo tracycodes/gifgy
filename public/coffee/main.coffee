@@ -56,9 +56,6 @@ require(["jquery", "underscore", "backbone"], ($, _, Backbone) ->
         # Display upload indicator
 
       reader.readAsDataURL(e.target.files[0])
-
-    upload_route: () ->
-
   })
   
   vent = _.extend({}, Backbone.Events);
