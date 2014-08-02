@@ -1,5 +1,6 @@
 #GIFGY
-npm install
-bower install
-grunt 
+
+- npm install
+- bower install
+- grunt 
 
