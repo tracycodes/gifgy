@@ -1,9 +1,25 @@
 module.exports = (grunt) ->
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    # watch: {
+    #   files: ['./public/**/*.coffee'],
+    #   tasks: ['coffee', 'scss'],
+    #   options: {
+    #     livereload: true,
+    #   }
+    # },
     watch: {
-      files: ['./public/**/*.coffee'],
-      tasks: ['coffee'],
+      options: {
+        livereload: true
+      },
+      css: {
+        files: './public/**/*.scss',
+        tasks: 'scss'
+      },
+      coffee: {
+        files: './public/**/*.coffee',
+        tasks: 'coffee'
+      }
     },
     coffee: {
       glob_to_multiple: {
@@ -15,11 +31,9 @@ module.exports = (grunt) ->
     },
     scss: {
       dist: {
-        files: [{
-          expand: true,
-          src: ['./public/**/*.scss'],
-          ext: '.css'
-        }]
+        files: {
+          'style.css': 'style.scss'
+        }
       }
     }
   });

@@ -1,0 +1,46 @@
+////////////
+//  Base  //
+////////////
+
+// Fix the sizing calculations
+* { box-sizing: border-box; }
+
+body {
+  height: 100%;
+  background-color: $dark-purple;
+  color: $white;
+  font-size: 1em;
+  font-family: $main-font;
+  line-height: 1.4em;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  transition: color $quick-transition, opacity $quick-transition;
+
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+// Remove all styling from lists
+ol, ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Remove all styling from headings
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 1em;
+  line-height: 1.4em;
+}

@@ -3,3 +3,4 @@ public/components
 npm-debug.log
 *.css
 *.js
+.DS_Store
