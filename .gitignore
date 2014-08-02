@@ -7,3 +7,4 @@ constants.coffee
 .DS_Store
 *.swp
 gifs
+configuration.yml
