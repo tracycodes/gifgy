@@ -39,11 +39,9 @@ module.exports = ( app ) ->
   ##   Get Random keys with two gifs   ##
   #######################################
   getRandomKeywordWithTwoGifs = ( redis, callback ) ->
-    console.log( "Find Random Keyword" )
     redis.randomkey ( err, keyword ) ->
       throw err if err
 
-      console.log( "Keyword: " + keyword )
       redis.select config('REDIS_TAGS_DB'), ( err ) ->
         throw err if err
 
@@ -58,20 +56,14 @@ module.exports = ( app ) ->
           while one_index == two_index
             two_index = Math.round( Math.random()*count )
 
-          console.log( 'One: ' + one_index )
-          console.log( 'Two: ' + two_index )
-
           redis.zrange keyword, one_index, one_index, ( err, one_gif_id ) ->
             throw err if err
 
-              console.log( 'zrange ' + keyword + ' ' + two_index + ' ' + two_index )
+            redis.zrange keyword, two_index, two_index, ( err, two_gif_id ) ->
+              throw err if err
 
-              redis.zrange keyword, two_index, two_index, ( err, two_gif_id ) ->
-                throw err if err
-
-                gif_ids = [ one_gif_id, two_gif_id ]
-                console.log( gif_ids )
-                callback( keyword, gif_ids )
+              gif_ids = [ one_gif_id[0], two_gif_id[0] ]
+              callback( keyword, gif_ids )
       
   #######################################
 
@@ -81,7 +73,7 @@ module.exports = ( app ) ->
       throw err if err
 
       getRandomKeywordWithTwoGifs redis, ( keyword, gif_ids ) ->
-       
+
         redis.select config('REDIS_METADATA_DB'), ( err ) ->
           throw err if err
 
@@ -90,15 +82,17 @@ module.exports = ( app ) ->
             gifs: []
 
           for gif_id in gif_ids
-            redis.hget 'gifs', gif_id, ( err, gif_url ) ->
-              throw err if err
+            do ( gif_id ) ->
 
-              resp.gifs.push
-                id: gif_id
-                url: gif_url
+              redis.hget 'gifs', gif_id, ( err, gif_url ) ->
+                throw err if err
 
-              if resp.length == gif_ids.length
-                res.json( resp ).end()
+                resp.gifs.push
+                  id: gif_id
+                  url: gif_url
+
+                if resp.gifs.length == gif_ids.length
+                  res.json( resp ).end()
   
   ##########################
   ##   Upload a new GIF   ##

@@ -26,7 +26,7 @@ module.exports = ( app ) ->
             return if exists
 
             ##  Record this ip_address and tag was already voted
-            redis.set( pair, 1 )
+            redis.set( pair, 1, 'EX', 86400 )
 
             ##  Record that this ip_address has already voted on the gif
             redis.select config('REDIS_METADATA_DB'), ( err ) ->
