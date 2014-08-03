@@ -16,15 +16,12 @@ require.config({
 })
 
 require(["jquery", "underscore", "backbone"], ($, _, Backbone) ->
-  toggle = false
 
-  setInterval () => 
-    if toggle
-      $('#flasher').text('GGIIFFGGYY')
-    else
-      $('#flasher').text('GIFGY')
-    toggle = !toggle
-  , 200
+  $('.faceoff-gif-image').on 'click', () ->
+    selection = $(this).parent()
+    selection.addClass('is-selected')
+    $('.faceoff-gif').not(selection).addClass('is-not-selected')
+    $(this).addClass('upvote')
 
   Router = Backbone.Router.extend({
     'uploader': 'uploader',
@@ -56,6 +53,10 @@ require(["jquery", "underscore", "backbone"], ($, _, Backbone) ->
         # Display upload indicator
 
       reader.readAsDataURL(e.target.files[0])
+    
+    upload_route: ->
+      alert('yeah')
+
   })
   
   vent = _.extend({}, Backbone.Events);

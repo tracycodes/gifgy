@@ -26,7 +26,7 @@
     "grunt-contrib-watch": "^0.6.1"
   },
   "scripts": {
-    "start": "./node_modules/coffee-script/bin/coffee app.coffee",
+    "start": "grunt build && ./node_modules/coffee-script/bin/coffee app.coffee",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

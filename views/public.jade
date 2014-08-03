@@ -41,14 +41,7 @@ html(lang='en')
       input(type='text', placeholder='Search for..')
 
 
-    script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-    script.
-      $('.faceoff-gif-image').on('click', function() {
-        var selection = $(this).parent();
-        selection.addClass('is-selected');
-        $('.faceoff-gif').not(selection).addClass('is-not-selected');
-        $(this).addClass('upvote');
-      });
+    script(src='../components/requirejs/require.js' data-main="../js/main")
 
     script.
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
