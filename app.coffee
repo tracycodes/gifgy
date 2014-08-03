@@ -10,6 +10,7 @@ app.set('view engine', 'jade')
 ##   Controllers   ##
 #####################
 require( './controllers/gifs' )( app )
+require( './controllers/votes' )( app )
 require( './controllers/s3' )( app )
 #####################
 

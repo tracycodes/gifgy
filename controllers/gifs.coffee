@@ -9,23 +9,25 @@ module.exports = ( app ) ->
   ##   Helper   ##
   ################
   redirectToGif = ( gif_id, res ) ->
-    redis.hget 'gifs', gif_id, ( err, gif_url ) ->
-      if gif_url
-        res.redirect( 301, gif_url )
-      else
-        res.status( 303, config('DEFAULT_GIF_URL') )
+    redis.select config('REDIS_METADATA_DB'), ->
+      redis.hget 'gifs', gif_id, ( err, gif_url ) ->
+        if gif_url
+          res.redirect( 301, gif_url )
+        else
+          res.status( 303, config('DEFAULT_GIF_URL') )
   ################
 
   app.get '/', ( req, res ) ->
 
     parts = req.headers.host.split(/\./)
     if parts.length == 3
-      keyword = parts[0]
-      redis.zrevrange keyword, -0, -0, ( err, gif_id ) ->
-        if gif_id
-          redirectToGif( gif_id, res )
-        else
-          res.redirect( 301, c('DEFAULT_GIF_URL') )
+      redis.select config('REDIS_TAGS_DB'), ->
+        keyword = parts[0]
+        redis.zrevrange keyword, -0, -0, ( err, gif_id ) ->
+          if gif_id
+            redirectToGif( gif_id, res )
+          else
+            res.redirect( 301, c('DEFAULT_GIF_URL') )
     else
       res.render 'public', ( err, html ) ->
         res.send( html )
@@ -42,11 +44,13 @@ module.exports = ( app ) ->
     gif_id = guid.raw()
     gif_url = 'http://i.imgur.com/t8IHP.gif'
 
-    redis.hset( 'gifs', gif_id, gif_url )
+    res.status( 201 )
 
-    now = (new Date()).getTime()/1000
-    for tag in tags
-      redis.zadd( tag, now, gif_id )
+    redis.select config('REDIS_METADATA_DB'), ->
+      redis.hset( 'gifs', gif_id, gif_url )
 
-    res.status( 201 ).send( {} )
+      redis.select config('REDIS_TAGS_DB'), ->
+        now = (new Date()).getTime()/1000
+        for tag in tags
+          redis.zadd( tag, now, gif_id )
 
