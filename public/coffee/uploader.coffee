@@ -1,4 +1,4 @@
-require ["jquery", "underscore", "backbone"], ($, _, Backbone) ->
+define ["jquery", "underscore", "backbone"], ($, _, Backbone) ->
   return Backbone.View.extend({
     el: $('#uploader'),
     events: {
@@ -6,7 +6,8 @@ require ["jquery", "underscore", "backbone"], ($, _, Backbone) ->
       'change input': 'upload'
     }
 
-    initialize: ->
+    initialize: (vent)->
+      vent.on('upload-route', _.bind(this.upload_route, this))
 
     upload: (e)->
       reader = new FileReader()
@@ -18,4 +19,7 @@ require ["jquery", "underscore", "backbone"], ($, _, Backbone) ->
         # Display upload indicator
 
       reader.readAsDataURL(e.target.files[0])
+    
+    upload_route: ->
+      alert('yeah')
   })
