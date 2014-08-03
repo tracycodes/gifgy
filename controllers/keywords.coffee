@@ -5,6 +5,16 @@ redis = require('redis').createClient()
 
 module.exports = ( app ) ->
 
+  app.get '/api/keywords/search/:query', ( req, res ) ->
+
+    redis.select config('REDIS_TAGS_DB'), ->
+
+      search = req.params.query + '*'
+      redis.keys search, ( err, keywords ) ->
+        throw err if err
+
+        res.json( keywords ).end()
+
   ################
   ##   Helper   ##
   ################
@@ -59,11 +69,11 @@ module.exports = ( app ) ->
           redis.zrange keyword, one_index, one_index, ( err, one_gif_id ) ->
             throw err if err
 
-            redis.zrange keyword, two_index, two_index, ( err, two_gif_id ) ->
-              throw err if err
+              redis.zrange keyword, two_index, two_index, ( err, two_gif_id ) ->
+                throw err if err
 
-              gif_ids = [ one_gif_id[0], two_gif_id[0] ]
-              callback( keyword, gif_ids )
+                gif_ids = [ one_gif_id, two_gif_id ]
+                callback( keyword, gif_ids )
       
   #######################################
 
@@ -73,7 +83,7 @@ module.exports = ( app ) ->
       throw err if err
 
       getRandomKeywordWithTwoGifs redis, ( keyword, gif_ids ) ->
-
+       
         redis.select config('REDIS_METADATA_DB'), ( err ) ->
           throw err if err
 
@@ -82,17 +92,15 @@ module.exports = ( app ) ->
             gifs: []
 
           for gif_id in gif_ids
-            do ( gif_id ) ->
+            redis.hget 'gifs', gif_id, ( err, gif_url ) ->
+              throw err if err
 
-              redis.hget 'gifs', gif_id, ( err, gif_url ) ->
-                throw err if err
+              resp.gifs.push
+                id: gif_id
+                url: gif_url
 
-                resp.gifs.push
-                  id: gif_id
-                  url: gif_url
-
-                if resp.gifs.length == gif_ids.length
-                  res.json( resp ).end()
+              if resp.length == gif_ids.length
+                res.json( resp ).end()
   
   ##########################
   ##   Upload a new GIF   ##
