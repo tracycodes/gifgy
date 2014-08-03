@@ -1,0 +1,115 @@
+///////////////
+//  Faceoff  //
+///////////////
+
+.faceoff {
+  position: relative;
+  padding-bottom: 70px;
+
+  &:before {
+    @include background-image(linear-gradient(-50deg, #FFFD1F 0%, #FC8746 50%, #B548FF 100%));
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 1px;
+    content: '';
+  }
+
+  &:after {
+    @include background-image(linear-gradient(-50deg, #17FFDA 0%, #1781FF 100%));
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 1px;
+    content: '';
+  }
+
+  .wrapper {
+    @extend %clearfix;
+    text-align: center;
+  }
+}
+
+.faceoff-title {
+  display: inline-block;
+  margin: -110px 0 40px 0;
+  padding: 40px 20px;
+  background-color: $dark-purple;
+  background-image: url('../images/word-bg.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  text-shadow: 0 4px 0 rgba(0,0,0,0.1);
+}
+
+.faceoff-word {
+  letter-spacing: -2px;
+  font-weight: 200;
+  font-size: 64px;
+
+  .domain {
+    letter-spacing: 0;
+    font-weight: 300;
+    font-size: 29px;
+    opacity: 0.4;
+  }
+}
+
+////////////////////
+//  Faceoff GIFs  //
+////////////////////
+
+.faceoff-gifs {
+  display: flex;
+  flex-direction: column wrap;
+  align-items: center;
+}
+
+.faceoff-gif {
+  flex-grow: 1;
+
+  &.is-selected .faceoff-gif-image {
+    @include transform(scale(1.05));
+    @include background-image(linear-gradient(-50deg, #FFFD1F 0%, #FC8746 50%, #B548FF 100%));
+  }
+
+  &.is-not-selected .faceoff-gif-image {
+    opacity: 0.1;
+  }
+}
+
+.faceoff-gif-image {
+  @include transition (transform $quick-transition, opacity $medium-transition);
+  position: relative;
+  display: inline-block;
+  padding: 2px;
+
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 300px;
+    width: auto;
+    border: 4px solid $dark-purple;
+  }
+
+  &:hover {
+    @include transform(scale(1.05));
+    @include background-image(linear-gradient(-50deg, #FFFD1F 0%, #FC8746 50%, #B548FF 100%));
+  }
+}
+
+///////////////////////////
+//  Site overview block  //
+///////////////////////////
+
+.site-overview {
+  margin: 50px auto;
+  max-width: 500px;
+  text-align: center;
+  font-size: 24px;
+}

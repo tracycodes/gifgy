@@ -4,6 +4,7 @@
 
 
 // Colors
+$darker-purple: #0E0C20;
 $dark-purple: #15122f;
 $white: #fff;
 
@@ -11,4 +12,5 @@ $white: #fff;
 $main-font: 'Dosis', sans-serif;
 
 // Transitions
-$quick-transition: 0.05s ease-in 0s;
+$quick-transition: 0.05s ease-in-out 0s;
+$medium-transition: 0.2s ease-in-out 0s;

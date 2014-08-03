@@ -1,0 +1,58 @@
+//////////////
+//  Header  //
+//////////////
+
+.header {
+  padding: 70px 0;
+
+  .wrapper {
+    @extend %clearfix;
+  }
+}
+
+///////////
+// Logo  //
+///////////
+
+.logo {
+  position: relative;
+  display: block;
+  float: left;
+  width: 94px;
+  height: 40px;
+
+  &:before {
+    @include transition (opacity $medium-transition);
+    position: absolute;
+    top:-20px;
+    left: 0;
+    z-index: -1;
+    width: 110px;
+    display: block;
+    height: 90px;
+    background-image: url('../images/logo-bg.svg');
+    background-position: center;
+    background-size: 110px 90px;
+    background-repeat: no-repeat;
+    content: '';
+    opacity: 0.5;
+  }
+
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
+//////////////////////
+//  New gif button  //
+//////////////////////
+
+.btn-new-gif {
+  @include background-image(linear-gradient(-50deg, #FFFD1F 0%, #FC8746 50%, #B548FF 100%));
+  -webkit-background-clip: text;
+  text-transform: uppercase;
+  font-size: 24px;
+  -webkit-text-fill-color: transparent;
+}

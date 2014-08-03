@@ -8,3 +8,4 @@ constants.coffee
 *.swp
 gifs
 configuration.yml
+.sass-cache/

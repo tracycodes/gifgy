@@ -1,0 +1,28 @@
+//////////////////
+//  Animations  //
+//////////////////
+
+
+//////////////
+//  Upvote  //
+//////////////
+
+@include keyframes(upvote) {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    // @include transform(translate3d(0, -100%, 0));
+    top: -50px;
+  }
+}
+
+.upvote {
+  @include animation-duration(1s);
+  @include animation-fill-mode(both);
+  animation-name: upvote;
+}

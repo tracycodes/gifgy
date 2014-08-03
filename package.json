@@ -23,7 +23,6 @@
     "grunt-cli": "^0.1.13",
     "grunt-contrib-coffee": "^0.10.1",
     "grunt-contrib-sass": "^0.7.3",
-    "grunt-contrib-scss": "^0.1.2",
     "grunt-contrib-watch": "^0.6.1"
   },
   "scripts": {

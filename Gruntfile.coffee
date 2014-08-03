@@ -7,11 +7,15 @@ module.exports = (grunt) ->
       },
       css: {
         files: './public/**/*.scss',
-        tasks: 'scss'
+        tasks: 'sass'
       },
       coffee: {
         files: './public/**/*.coffee',
         tasks: 'coffee'
+      },
+      jade: {
+        files: './public/**/*.jade',
+        tasks: 'build'
       }
     },
     coffee: {
@@ -22,17 +26,18 @@ module.exports = (grunt) ->
         ext: '.js'
       }
     },
-    scss: {
+    sass: {
       dist: {
         files: {
-          'style.css': 'style.scss'
+          './public/css/style.css': './public/scss/style.scss'
         }
       }
     }
-  });
+  })
 
   grunt.loadNpmTasks('grunt-contrib-coffee')
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-scss');
+  grunt.loadNpmTasks('grunt-contrib-watch')
+  grunt.loadNpmTasks('grunt-contrib-sass')
 
-  grunt.registerTask('default', ['coffee', 'scss'])
+  grunt.registerTask('build', ['coffee', 'sass'])
+  grunt.registerTask('default', ['build', 'watch'])

@@ -9,13 +9,18 @@ body {
   height: 100%;
   background-color: $dark-purple;
   color: $white;
-  font-size: 1em;
+  font-size: 20px;
   font-family: $main-font;
   line-height: 1.4em;
   -webkit-font-smoothing: antialiased;
+  background-image: url('../images/bg-pattern.svg');
+  background-repeat: repeat-y;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 a {
+  color: $white;
   text-decoration: none;
   transition: color $quick-transition, opacity $quick-transition;
 

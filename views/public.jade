@@ -1,6 +1,60 @@
 doctype html
-html
+html(lang='en')
   head
-    title Git.gy - The TV of the Internet
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title Gif.gy - The TV of the Internet
+
+    meta(name='description', content='The TV of the Internet')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    link(rel='icon' href='favicon.ico')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Dosis:200,300,400')
+    link(rel='stylesheet', href='../css/style.css')
+
   body
-    h1 Hodor
+    header.header
+      .wrapper
+        a.logo(href='/')
+          img(src='../images/logo.svg' title='Gif.gy')
+        a.btn-new-gif.pull-right(href='#') Add a new Gif
+
+    .faceoff
+      .wrapper
+        .faceoff-title
+          a.faceoff-word(href='#') Somelongassword<span class='domain'>.gif.gy</span>
+
+        .faceoff-gifs
+          .faceoff-gif
+            a.faceoff-gif-image(href='#')
+              img(src='http://www.catgifpage.com/gifs/223.gif')
+
+          .faceoff-gif
+            a.faceoff-gif-image(href='#')
+              img(src='http://www.catgifpage.com/gifs/123.gif')
+
+
+    .site-overview.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eros lectus, ultricies eu pulvinar et, blandit eget ligula.
+
+    .search
+      input(type='text', placeholder='Search for..')
+
+
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+    script.
+      $('.faceoff-gif-image').on('click', function() {
+        var selection = $(this).parent();
+        selection.addClass('is-selected');
+        $('.faceoff-gif').not(selection).addClass('is-not-selected');
+        $(this).addClass('upvote');
+      });
+
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-XXXXXXXX-X', 'auto');
+        ga('send', 'pageview');
