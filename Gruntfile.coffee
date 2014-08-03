@@ -5,7 +5,7 @@ module.exports = (grunt) ->
       options: {
         livereload: true
       },
-      css: {
+      sass: {
         files: './public/**/*.scss',
         tasks: 'sass'
       },
@@ -21,8 +21,11 @@ module.exports = (grunt) ->
     coffee: {
       glob_to_multiple: {
         expand: true,
+        flatten: false,
         extDot: 'last',
-        src: './public/**/*.coffee',
+        cwd: './public/coffee/',
+        src: '**/*.coffee',
+        dest: './public/js'
         ext: '.js'
       }
     },

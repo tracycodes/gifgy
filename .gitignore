@@ -9,3 +9,5 @@ constants.coffee
 gifs
 configuration.yml
 .sass-cache/
+public/css
+public/js
