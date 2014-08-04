@@ -16,7 +16,6 @@
   }
   100% {
     opacity: 0;
-    // @include transform(translate3d(0, -100%, 0));
     top: -50px;
   }
 }

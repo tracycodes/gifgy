@@ -13,13 +13,18 @@ html(lang='en')
     link(rel='stylesheet', href='../css/style.css')
 
   body
+    .modal
+      .dropzone
+        img.drop-hand(src='../images/drop-hand.svg')
+        h3 Drag an image here
+        a.dropzone-link(href='#') Or click here to select the file
+
     header.header
       .wrapper
         a.logo(href='/')
           img(src='../images/logo.svg' title='Gif.gy')
         a.btn-new-gif.pull-right(href='#') Add a new Gif
 
-    .dropzone.hidden
     .faceoff
       .wrapper
         .faceoff-title

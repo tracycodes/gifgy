@@ -1,0 +1,51 @@
+////////////////
+//  Uploader  //
+////////////////
+
+.modal {
+  position: fixed;
+  padding: 40px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba( $dark-purple, 0.9 );
+  z-index: 100;
+}
+
+.dropzone {
+  display: block;
+  position: relative;
+  border-radius: 10px;
+  border: 2px dashed rgba( $blue, 0.8 );
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
+  h3 {
+    font-size: 36px;
+    margin: 0 0 50px 0;
+    font-weight: 200;
+    text-transform: uppercase;
+    @include background-image(linear-gradient(-50deg, #FFFD1F 0%, #FC8746 50%, #B548FF 100%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.drop-hand {
+  margin: 80px 0 20px 0;
+}
+
+.dropzone-link {
+  @include transition (background-color $quick-transition);
+  color: $white;
+  border: 1px solid $blue;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 20px 30px;
+
+  &:hover {
+    background-color: rgba( $blue, 0.1 );
+  }
+}
