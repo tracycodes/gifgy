@@ -2,7 +2,7 @@
 //  Uploader  //
 ////////////////
 
-.modal {
+#dropzone {
   position: fixed;
   padding: 40px;
   top: 0;
@@ -13,7 +13,7 @@
   z-index: 100;
 }
 
-.dropzone {
+.dropzone-area {
   display: block;
   position: relative;
   border-radius: 10px;

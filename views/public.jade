@@ -13,8 +13,8 @@ html(lang='en')
     link(rel='stylesheet', href='../css/style.css')
 
   body
-    .modal
-      .dropzone
+    #dropzone.hidden
+      .dropzone-area
         img.drop-hand(src='../images/drop-hand.svg')
         h3 Drag an image here
         a.dropzone-link(href='#') Or click here to select the file
@@ -23,7 +23,8 @@ html(lang='en')
       .wrapper
         a.logo(href='/')
           img(src='../images/logo.svg' title='Gif.gy')
-        a.btn-new-gif.pull-right(href='#') Add a new Gif
+        #uploader
+          a.btn-new-gif.pull-right(href='#') Add a new Gif
 
     .faceoff
       .wrapper
