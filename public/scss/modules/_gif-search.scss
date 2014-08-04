@@ -11,38 +11,42 @@
   position: relative;
 
   input {
-    @include placeholder { color: $white; }
+    @include placeholder { color: rgba(255,255,255,0.4); }
     display: block;
+    padding: 20px 25px 20px 80px;
     width: 100%;
     outline: none;
     border: none;
     border: 1px solid #17D5E6;
-    // background-color: rgba(0,0,0,0.1);
     background-color: $dark-purple;
     font-weight: 200;
     font-size: 36px;
-    padding: 20px 25px 20px 80px;
+
+    &:active {
+      color: $white;
+    }
   }
 
   &:before {
-    top: 25px;
+    position: absolute;
+    top: 27px;
     left: 30px;
-    content: '';
-    background-image: url('../images/search-icon.svg');
-    background-repeat: no-repeat;
+    display: block;
     width: 40px;
     height: 34px;
+    background-image: url('../images/search-icon.svg');
     background-size: 80%;
-    display: block;
-    position: absolute;
+    background-repeat: no-repeat;
+    content: '';
+    opacity: 0.4;
   }
 
   &:after {
-    content: '';
+    display: block;
     margin-top: 5px;
     height: 30px;
     background-image: url('../images/search-lines.svg');
     background-repeat: repeat-x;
-    display: block;
+    content: '';
   }
 }
