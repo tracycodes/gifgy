@@ -3,6 +3,7 @@ require.config({
     "jquery": "../components/jquery/dist/jquery",
     "underscore": "../components/underscore/underscore",
     "backbone": "../components/backbone/backbone",
+    "dropzone": "../components/dropzone/downloads/dropzone-amd-module"
   },
   shim: {
     'backbone': {
@@ -23,7 +24,7 @@ require([
   "uploader", 
   "router"
 ], ($, _, Backbone, Landing, Uploader, Router) ->
-  
+
   vent = _.extend({}, Backbone.Events);
   router = new Router(vent)
   uploader = new Uploader(vent)
