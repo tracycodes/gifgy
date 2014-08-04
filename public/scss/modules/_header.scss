@@ -18,11 +18,11 @@
   position: relative;
   display: block;
   float: left;
-  width: 94px;
-  height: 40px;
+  width: 100px;
+  height: 65px;
 
   &:before {
-    @include transition (opacity $medium-transition);
+    @include transition (opacity $quick-transition);
     position: absolute;
     top:-20px;
     left: 0;
@@ -55,4 +55,20 @@
   text-transform: uppercase;
   font-size: 24px;
   -webkit-text-fill-color: transparent;
+
+  &:after {
+    opacity: 0.5;
+    content: '';
+    margin-top: 5px;
+    height: 30px;
+    background-image: url('../images/btn-lines.svg');
+    background-repeat: repeat-x;
+    display: block;
+    @include transition (margin-top $medium-transition, opacity $medium-transition);
+  }
+
+  &:hover:after {
+    margin-top: 2px;
+    opacity: 1;
+  }
 }

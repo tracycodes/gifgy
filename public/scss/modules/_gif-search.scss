@@ -1,0 +1,48 @@
+//////////////////
+//  Gif search  //
+//////////////////
+
+.gif-search {
+  margin-top: -45px;
+  margin-bottom: 50px;
+}
+
+.gif-search-input {
+  position: relative;
+
+  input {
+    @include placeholder { color: $white; }
+    display: block;
+    width: 100%;
+    outline: none;
+    border: none;
+    border: 1px solid #17D5E6;
+    // background-color: rgba(0,0,0,0.1);
+    background-color: $dark-purple;
+    font-weight: 200;
+    font-size: 36px;
+    padding: 20px 25px 20px 80px;
+  }
+
+  &:before {
+    top: 25px;
+    left: 30px;
+    content: '';
+    background-image: url('../images/search-icon.svg');
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 34px;
+    background-size: 80%;
+    display: block;
+    position: absolute;
+  }
+
+  &:after {
+    content: '';
+    margin-top: 5px;
+    height: 30px;
+    background-image: url('../images/search-lines.svg');
+    background-repeat: repeat-x;
+    display: block;
+  }
+}

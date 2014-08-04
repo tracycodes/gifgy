@@ -1,0 +1,21 @@
+//////////////
+//  Footer  //
+//////////////
+
+.footer {
+  margin-top: 80px;
+  padding: 40px 0;
+  position: relative;
+  opacity: 0.5;
+
+  &:before {
+    @include background-image(linear-gradient(-50deg, #FFFD1F 0%, #FC8746 50%, #B548FF 100%));
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 1px;
+    content: '';
+  }
+}

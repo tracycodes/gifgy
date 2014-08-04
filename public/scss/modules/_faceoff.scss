@@ -4,7 +4,7 @@
 
 .faceoff {
   position: relative;
-  padding-bottom: 70px;
+  padding-bottom: 90px;
 
   &:before {
     @include background-image(linear-gradient(-50deg, #FFFD1F 0%, #FC8746 50%, #B548FF 100%));
