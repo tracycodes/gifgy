@@ -5,8 +5,11 @@
 // Fix the sizing calculations
 * { box-sizing: border-box; }
 
-body {
+html, body {
+  width: 100%;
   height: 100%;
+}
+body {
   background-color: $dark-purple;
   color: $white;
   font-size: 20px;
