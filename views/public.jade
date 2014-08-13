@@ -14,7 +14,10 @@ html(lang='en')
 
   body
     #dropzone.hidden
-      form
+      .dropzone-area
+        img.drop-hand(src='../images/drop-hand.svg')
+        h3 Drag an image here
+        a.dropzone-link(href='#') Or click here to select the file
 
     header.header
       .wrapper

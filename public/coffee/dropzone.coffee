@@ -13,7 +13,7 @@ define ["jquery", "underscore", "backbone", "dropzone"], ($, _, Backbone, Dropzo
       $(document).keyup((e) => @keypressed(e))
       
       new Dropzone("#dropzone form", {
-
+        
       });
 
     upload: (e)->
